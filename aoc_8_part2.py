@@ -42,7 +42,8 @@ def get_antinodes(coord1, coord2):
     return len(seen)
 
 
-filename = 'aoc8data1.txt'
+# filename = 'aoc_8_test_data1.txt'
+filename = 'aoc_8_data1.txt'
 inf = open(filename)
 texts = [line.strip() for line in inf]
 inf.close()
@@ -78,3 +79,6 @@ print(len(seen))
 # print(get_antinodes((1, 3), (2, 1)))
 # print(get_antinodes((0, 0), (2, 1)))
 # print(get_antinodes((8, 8), (9, 9)))
+
+# missing
+# {(36, 34), (26, 17), (7, 0), (30, 0), (34, 38), (47, 6), (0, 25), (29, 47), (43, 44), (49, 17)}

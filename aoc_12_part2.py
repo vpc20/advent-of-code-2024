@@ -41,19 +41,37 @@ def count_corners(conns, coord):
     r, c = coord
 
     # check neighbors to determine if the coordinate is a corner
-    for d1, d2, d3 in ([(0, -1), (-1, 0), (-1, -1)],  # upper-left
-                       [(-1, 0), (0, 1), (-1, 1)],  # upper-right
-                       [(0, -1), (1, 0), (1, -1)],  # lower-left
-                       [(0, 1), (1, 0), (1, 1)]):  # lower-right
+    for nb1, nb2, nb3 in ([(r, c - 1), (r - 1, c), (r - 1, c - 1)],  # upper-left
+                       [(r - 1, c), (r, c + 1), (r - 1, c + 1)],  # upper-right
+                       [(r, c - 1), (r + 1, c), (r + 1, c - 1)],  # lower-left
+                       [(r, c + 1), (r + 1, c), (r + 1, c + 1)]):  # lower-right
         #  corner pointing out
-        if (r + d1[0], c + d1[1]) not in conns and (r + d2[0], c + d2[1]) not in conns:
+        if nb1 not in conns and nb2 not in conns:
             corner_ctr += 1
         # corner pointing in
-        if (r + d1[0], c + d1[1]) in conns and (r + d2[0], c + d2[1]) in conns and (r + d3[0], c + d3[1]) not in conns:
+        if nb1 in conns and nb2 in conns and nb3 not in conns:
             corner_ctr += 1
 
     return corner_ctr
 
+
+# def count_corners(conns, coord):
+#     corner_ctr = 0
+#     r, c = coord
+#
+#     # check neighbors to determine if the coordinate is a corner
+#     for d1, d2, d3 in ([(0, -1), (-1, 0), (-1, -1)],  # upper-left
+#                        [(-1, 0), (0, 1), (-1, 1)],  # upper-right
+#                        [(0, -1), (1, 0), (1, -1)],  # lower-left
+#                        [(0, 1), (1, 0), (1, 1)]):  # lower-right
+#         #  corner pointing out
+#         if (r + d1[0], c + d1[1]) not in conns and (r + d2[0], c + d2[1]) not in conns:
+#             corner_ctr += 1
+#         # corner pointing in
+#         if (r + d1[0], c + d1[1]) in conns and (r + d2[0], c + d2[1]) in conns and (r + d3[0], c + d3[1]) not in conns:
+#             corner_ctr += 1
+#
+#     return corner_ctr
 
 # def count_corners(conns, coord):
 #     corner_ctr = 0
@@ -94,7 +112,7 @@ def solve_part2(arr):
 
 
 # parse text input
-filename = 'aoc12data1.txt'
+filename = 'aoc_12_data1.txt'
 inf = open(filename)
 # texts = [line.strip() for line in inf]
 arr = [[c for c in line.strip()] for line in inf]

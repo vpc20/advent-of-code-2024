@@ -67,8 +67,9 @@ def main(file_path):
     antinodes = find_antinodes(grid)
     print(antinodes)
     print('-------------------------------------------------------------------------')
-    for e in sorted(antinodes):
-        print(e)
+    # for e in sorted(antinodes):
+    #     print(e)
+    print(antinodes)
     return len(antinodes)
 
 
@@ -97,6 +98,7 @@ if __name__ == "__main__":
     # test()
 
     # Then process actual input file
-    file_path = 'aoc8data1.txt'
+    # file_path = 'aoc_8_test_data1.txt'
+    file_path = 'aoc_8_data1.txt'
     result = main(file_path)
     print(f"Total number of unique antinode locations: {result}")
