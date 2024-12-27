@@ -32,19 +32,19 @@ def create_graph(conns):
 #     return conns
 
 
-def is_complete_graph(g, combs):
-    for i in range(3):
-        for j in range(3):
-            if j != i:
-                if combs[i] not in g[combs[j]]:
-                    return False
-    return True
-# def is_complete_graph(g, vertices):
-#     for vertex in vertices:
-#         for k in vertices:
-#             if vertex not in g[k]:
-#                 return False
+# def is_complete_graph(g, combs):
+#     for i in range(3):
+#         for j in range(3):
+#             if j != i:
+#                 if combs[i] not in g[combs[j]]:
+#                     return False
 #     return True
+def is_complete_graph(g, vertices):
+    for v1 in vertices:
+        for v2 in vertices:
+            if v1 != v2 and v1 not in g[v2]:
+                return False
+    return True
 
 
 def solve_part1(input_conns):
@@ -72,4 +72,3 @@ f.close()
 
 x = solve_part1(in_conns)
 print(x)
-

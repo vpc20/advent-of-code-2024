@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-filename = 'aoc5data1.txt'
+filename = 'aoc_5_data1.txt'
 inf = open(filename)
 texts = [line.strip() for line in inf]
 inf.close()
@@ -21,13 +21,14 @@ for text in texts:
 
 ###############################################################################
 
-filename = 'aoc5data2.txt'
+filename = 'aoc_5_data2.txt'
 inf = open(filename)
 nums = [[e for e in line.strip().split(',')] for line in inf]
 inf.close()
 
 valid_nums = []
 invalid_nums = []
+
 for e in nums:
     for i in range(len(e)):
         ok = True
