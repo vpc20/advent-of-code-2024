@@ -31,17 +31,29 @@ invalid_nums = []
 
 for e in nums:
     for i in range(len(e)):
-        ok = True
         for j in range(i + 1, len(e)):
             if (e[i], e[j]) not in rules:
-                ok = False
+                invalid_nums.append(e)
                 break
-        if not ok:
-            break
-    if ok:
-        valid_nums.append(e)
+        else:
+            continue
+        break
     else:
-        invalid_nums.append(e)
+        valid_nums.append(e)
+
+# for e in nums:
+#     for i in range(len(e)):
+#         ok = True
+#         for j in range(i + 1, len(e)):
+#             if (e[i], e[j]) not in rules:
+#                 ok = False
+#                 break
+#         if not ok:
+#             break
+#     if ok:
+#         valid_nums.append(e)
+#     else:
+#         invalid_nums.append(e)
 
 # print(valid_nums)
 total = 0
