@@ -15,13 +15,13 @@ f = open('aoc_25_data1.txt')
 # f = open('aoc_25_data1.txt')
 # x = f.read()
 locks, keys = [], []
-for text_grid in f.read().split('\n\n'):
-    if text_grid[0] == '#':
+for block in f.read().split('\n\n'):
+    if block[0] == '#':
         etype = 'lock'
     else:
         etype = 'key'
     heights = [-1 for _ in range(5)]
-    for s in text_grid.split():
+    for s in block.split():
         for i, c in enumerate(s):
             if c == '#':
                 heights[i] += 1

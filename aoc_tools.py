@@ -16,6 +16,18 @@ def read_input_to_text_array(in_file):
     return result
 
 
+def read_input_to_list_of_grids(in_file):
+    f = open(in_file)
+    blocks = f.read().strip().split('\n\n')
+    grids = []
+    for block in blocks:
+        rows = block.splitlines()
+        grid = [list(row) for row in rows]
+        grids.append(grid)
+    f.close()
+    return grids
+
+
 def read_input_to_nums(in_file):
     f = open(in_file)
     nums = [re.findall(r'\d+', line) for line in f]
