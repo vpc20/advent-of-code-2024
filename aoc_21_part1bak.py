@@ -26,7 +26,7 @@ def shortest_path(start, target, keypad):
     return None
 
 
-def numeric_keypad_path(code):
+def numeric_keypad_path(code, start):
     numeric_keypad = [
         ['7', '8', '9'],
         ['4', '5', '6'],
@@ -40,17 +40,18 @@ def numeric_keypad_path(code):
         '0': (3, 1), 'A': (3, 2)
     }
 
-    start = digit_position['A']  # start position is 'A'
+    # start = digit_position['A']  # start position is 'A'
     path = ''
 
     for digit in code:
         path += shortest_path(start, digit_position[digit], numeric_keypad) + 'A'
         start = digit_position[digit]
 
-    return path
+    last_pos = start
+    return path, last_pos
 
 
-def direction_keypad_path(num_key_path):
+def direction_keypad_path(num_key_path, start):
     direction_keypad = [
         [None, '^', 'A'],
         ['<', 'v', '>']
@@ -60,14 +61,15 @@ def direction_keypad_path(num_key_path):
         '<': (1, 0), 'v': (1, 1), '>': (1, 2)
     }
 
-    start = direction_position['A']  # start position is 'A'
+    # start = direction_position['A']  # start position is 'A'
     path = ''
 
     for c in num_key_path:
         path += shortest_path(start, direction_position[c], direction_keypad) + 'A'
         start = direction_position[c]
 
-    return path
+    last_post = start
+    return path, last_post
 
 
 def main():
@@ -78,22 +80,18 @@ def main():
         "456A",
         "379A"
     ]
-    # codes = [
-    #     '671A',
-    #     '826A',
-    #     '670A',
-    #     '085A',
-    #     '283A'
-    # ]
 
     total_complexity = 0
 
-    # start_num_keypad = (3, 2)
-    # start_dir_keypad = (0, 2)
+    start_num_keypad = (3, 2)
+    start_dir_keypad = (0, 2)
     for code in codes:
-        num_key_path = numeric_keypad_path(code)
-        dir_key_path1 = direction_keypad_path(num_key_path)
-        dir_key_path2 = direction_keypad_path(dir_key_path1)
+        num_key_path, last_pos1 = numeric_keypad_path(code, start_num_keypad)
+        start_num_keypad = last_pos1
+        dir_key_path1, last_pos2 = direction_keypad_path(num_key_path, start_dir_keypad)
+        start_dir_keypad = last_pos2
+        dir_key_path2, last_pos3 = direction_keypad_path(dir_key_path1, start_dir_keypad)
+        start_dir_keypad = last_pos3
 
         # numeric_part = int(code.replace('A', ''))
         complexity = len(dir_key_path2) * int(code[:3])
