@@ -96,6 +96,7 @@ def main():
         dir_key_path2 = direction_keypad_path(dir_key_path1)
 
         # numeric_part = int(code.replace('A', ''))
+        print(len(dir_key_path2) , int(code[:3]))
         complexity = len(dir_key_path2) * int(code[:3])
         total_complexity += complexity
 
