@@ -59,7 +59,7 @@ bwurrg
 brgr
 bbrgwb"""
 
-filename = 'aoc19data1.txt'  # test - change
+filename = 'aoc_19_data1.txt'  # test - change
 inf = open(filename)
 input_data = inf.read()
 inf.close()

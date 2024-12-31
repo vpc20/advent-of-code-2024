@@ -1,4 +1,4 @@
-from itertools import permutations
+from functools import cache
 
 
 def count_possible_designs(patterns, designs):
@@ -13,18 +13,18 @@ def count_possible_designs(patterns, designs):
         The number of possible designs.
     """
 
+    @cache
     def is_possible(design, patterns):
         """
         Checks if a given design is possible using the available patterns.
 
         Args:
-            design: The desired design.
-            patterns: The available patterns.
+            design: The desired design (string).
+            patterns: A tuple of available patterns.
 
         Returns:
             True if the design is possible, False otherwise.
         """
-
         if design == '':
             return True
 
@@ -36,7 +36,7 @@ def count_possible_designs(patterns, designs):
 
     count = 0
     for design in designs:
-        if is_possible(design, patterns):
+        if is_possible(design, tuple(patterns)):  # Convert patterns to a tuple
             count += 1
 
     return count
@@ -49,27 +49,17 @@ def count_possible_designs(patterns, designs):
 # result = count_possible_designs(patterns, designs)
 # print(result)  # Output: 6
 
-###################################################################################################
-# parse text input
 
-filename = 'aoc19data1.txt'  # test - change
+filename = 'aoc_19_data1.txt'  # test - change
 inf = open(filename)
 input_data = inf.read()
 input1, input2 = input_data.split('\n\n')
 inf.close()
 
-# print(input1)
-# print()
-# print(input2)
-
 patterns = input1.split(', ')
 print(patterns)
-# print(len(patterns))
 designs = input2.split('\n')
 print(designs)
 
 result = count_possible_designs(patterns, designs)
 print(result)  # Output: 6
-
-
-
